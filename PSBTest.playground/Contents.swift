@@ -11,8 +11,8 @@ func teemResults(data: [String]) {
     var secondTeem = 0
     
     data.forEach { result in
-        if result.contains(":") {
-            var arr = result.filter{ $0 != " " }.components(separatedBy: ":")
+        if result.filter({ $0 == ":"}).count == 1 {
+            var arr = result.filter{ $0 != " " && $0 != "-" && $0 != "+" && $0 != "=" && $0 != "*" && $0 != "/" }.components(separatedBy: ":")
             if arr[0].isInt && arr[1].isInt {
                 if arr[0] > arr[1] {
                     firstTeem += 3
@@ -37,4 +37,4 @@ func teemResults(data: [String]) {
 }
 
 
-teemResults(data: ["3:2", "3: 3", "3:a", "3- 12"])
+teemResults(data: ["3:2", "3: 3", "3:a", "3- 12", "3::1", "3+1", "3  2"])
